@@ -24,7 +24,10 @@ jobs:
         run: npm install -D wrangler
 
       - name: Build
-        run: npm run build
+        run: |
+          npx astro build
+          npx pagefind --site dist
+          cp -r dist/pagefind public/ || true
         env:
           ASTRO_TELEMETRY_DISABLED: "1"
 
