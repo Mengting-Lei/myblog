@@ -8,6 +8,9 @@ export default {
     about: "关于",
     archives: "归档",
     search: "搜索",
+    service: "服务",
+    life: "生活碎片",
+    contact: "联系",
   },
   post: {
     publishedAt: "发布于",
