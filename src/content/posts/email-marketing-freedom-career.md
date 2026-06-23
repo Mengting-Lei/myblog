@@ -4,8 +4,6 @@ pubDatetime: 2025-11-14T22:38:00+08:00
 description: "英专生如何靠邮件营销实现自由职业，不再为别人打工，拥有时间自由和地点自由。"
 tags:
   - 自由职业
-  - 邮件营销
-  - 个人成长
 ogImage: /images/email-marketing-freedom-career/img1.jpg
 draft: false
 ---
