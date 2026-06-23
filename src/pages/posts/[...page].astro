@@ -35,16 +35,16 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
     {/* Search + Tag Filter Bar */}
     <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Search Box */}
-      <div class="relative w-full sm:max-w-xs">
+      <div class="relative w-full sm:max-w-[200px]">
         <input
           type="text"
           id="post-search"
-          placeholder="搜索文章..."
-          class="w-full rounded-full border border-border bg-background py-2 pl-10 pr-4 text-sm outline-none transition-colors focus:border-accent dark:bg-[#1a2e28]"
+          placeholder="搜索..."
+          class="w-full rounded-full border border-border bg-background py-2 pl-9 pr-3 text-sm outline-none transition-colors focus:border-accent dark:bg-[#1a2e28]"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+          class="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-muted-foreground"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -57,7 +57,7 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
       {/* Tag Filter Buttons */}
       <div class="flex flex-wrap gap-2" id="tag-filter">
         <button
-          class="tag-btn active rounded-full border border-border bg-background px-4 py-1.5 text-sm font-medium transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
+          class="tag-btn active rounded-full border border-border bg-background px-3 py-1 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
           data-tag="all"
           data-active="true"
         >
@@ -65,7 +65,7 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
         </button>
         {fixedTags.map((tag) => (
           <button
-            class="tag-btn rounded-full border border-border bg-background px-4 py-1.5 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
+            class="tag-btn rounded-full border border-border bg-background px-3 py-1 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
             data-tag={tag}
             data-active="false"
           >
