@@ -44,7 +44,10 @@ const coverImage = typeof data.ogImage === "string" ? data.ogImage : null;
       {tags && tags.length > 0 && (
         <div class="mb-3 flex flex-wrap gap-2">
           {tags.slice(0, 3).map((tag) => (
-            <span class="inline-block rounded-full bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent dark:bg-accent/20">
+            <span
+              data-tag={tag}
+              class="inline-block rounded-full bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent dark:bg-accent/20"
+            >
               {tag}
             </span>
           ))}

@@ -3,7 +3,7 @@ title: "我的第一篇博客"
 pubDatetime: 2021-12-20T00:00:00+08:00
 description: "受朋友启发，创建这个博客来记录工作、生活和个人成长。"
 tags:
-  - 随笔
+  - 个人成长
 draft: false
 ---
 
