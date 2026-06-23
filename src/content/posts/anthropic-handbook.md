@@ -4,7 +4,7 @@ pubDatetime: 2026-05-25T07:46:00+08:00
 description: "Anthropic《创始人手册》里的4个洞察：创始人定义改变、角色从执行者变总指挥、先验证再动手、AI技术债会复利。"
 tags:
   - AI
-ogImage: /images/anthropic-handbook/img2.png
+ogImage: /images/anthropic-handbook/cover.jpg
 draft: false
 ---
 
