@@ -29,8 +29,10 @@ export default defineAstroPaperConfig({
     search: "pagefind",
   },
   socials: [
-    { name: "mail",   url: "mailto:leimengting15@gmail.com" },
-    { name: "github", url: "https://github.com/Mengting-Lei" },
+    { name: "mail",        url: "mailto:hello@leimengting.com", linkTitle: "发邮件给梦婷" },
+    { name: "xiaohongshu", url: "https://www.xiaohongshu.com/user/profile/6305693a0000000012003aae", linkTitle: "梦婷的小红书" },
+    { name: "zhihu",       url: "https://www.zhihu.com/people/0cb656775a71a49f4515318ff41663ae", linkTitle: "梦婷的知乎" },
+    { name: "wechat-mp",   url: "https://leimengting.com/contact", linkTitle: "关注梦婷公众号" },
   ],
   shareLinks: [
     { name: "whatsapp", url: "https://wa.me/?text=" },

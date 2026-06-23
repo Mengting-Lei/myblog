@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 微信公众号 logo 简化版：对话气泡 -->
+  <path d="M9 3C5.13 3 2 5.69 2 9c0 1.89.87 3.59 2.26 4.77L3.5 16l2.5-1.25C7 15.56 7.98 15.75 9 15.75c.34 0 .68-.02 1-.06"/>
+  <path d="M14 9c0-1.1.39-2.1 1.03-2.9M22 14c0 2.76-2.69 5-6 5-.9 0-1.75-.17-2.5-.46L11 20l.74-2.23C11.27 17.07 11 16.06 11 15c0-2.76 2.69-5 6-5s6 2.24 6 5z"/>
+</svg>
