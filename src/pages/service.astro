@@ -1,5 +1,4 @@
 ---
-import { getEntry, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
@@ -7,25 +6,160 @@ import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
 
-const page = await getEntry("pages", "service");
-
-if (!page) {
-  throw new Error(
-    "Missing content entry: `service.md` in `src/content/pages/`"
-  );
-}
-
-const { Content } = await render(page);
+const products = [
+  {
+    icon: "💼",
+    title: "品牌邮件营销增长全案",
+    tag: "B端核心产品 · 高客单服务",
+    price: "$6,999 / 3个月",
+    desc: "帮助出海与海外品牌，在3个月内搭建完整的邮件营销增长体系，通过策略、内容、自动化、设计一体化，实现广告降本、复购提升和营收增长。",
+    audience: "出海品牌、海外华人品牌、Shopify独立站品牌、已有流量但邮件渠道没有系统运营的品牌。",
+    deliverables: [
+      "账户诊断：订阅、分组、发送频率、投递质量体检",
+      "数据基线：打开率、点击率、转化率分析",
+      "增长蓝图：自动化矩阵 + 内容节奏 + 优先级路线图",
+      "流程搭建：欢迎流、弃购流、复购流、节日流",
+      "内容共创：月度邮件日历、文案框架、视觉模板",
+      "A/B测试：主题行、版式、CTA实验设计",
+      "月报复盘：数据追踪、优化建议、阶段迭代",
+      "增长手册：可长期复用的《品牌邮件增长操作手册》",
+    ],
+    cta: "申请合作",
+    url: "/contact",
+  },
+  {
+    icon: "🎯",
+    title: "G.R.O.W.EDM™ 三个月私教陪跑营",
+    tag: "技能型产品 · C端核心产品",
+    price: "¥5,999 / 3个月",
+    desc: "帮助想学习邮件营销、转型自由职业或承接海外单的人，用3个月系统掌握邮件营销操盘能力，完成从工具、策略、自动化到案例作品集的实操训练。",
+    audience: "想系统学习邮件营销、转型自由职业、有出海副业或小团队想靠邮件提升业绩的人。",
+    deliverables: [
+      "12节邮件营销系统课程",
+      "3个月私教1v1答疑实操陪跑",
+      "每周课件 + 作业 + 批改",
+      "Klaviyo / Mailchimp工具训练",
+      "邮件账户诊断与数据清理",
+      "用户分组与标签策略",
+      "欢迎流、弃购流、复购流、唤醒流训练",
+      "主题行、文案、CTA、视觉模板训练",
+      "自动化流程脚本 + 模板库",
+      "作品集 + 实操案例 + 推荐语产出",
+    ],
+    cta: "了解详情",
+    url: "/contact",
+  },
+  {
+    icon: "📌",
+    title: "品牌邮件营销增长战略 1v1 定制方案",
+    tag: "B端诊断产品 · 成交前置产品",
+    price: "¥999 / 次",
+    desc: "帮助出海品牌快速看清当前邮件账户的问题、增长机会和未来1–3个月的优化路径。",
+    audience: "已有邮件账户但不知道问题在哪、数据不理想、想启动邮件营销或缺少策略方向的品牌。",
+    deliverables: [
+      "品牌邮件账户诊断",
+      "订阅、分组、发送频率分析",
+      "打开率、点击率、转化率数据判断",
+      "自动化矩阵建议",
+      "内容节奏表建议",
+      "3–5封邮件脚本 / 主题行 / 模板示例",
+      "一份品牌专属增长诊断报告",
+      "未来1–3个月优化路径建议",
+    ],
+    cta: "预约诊断",
+    url: "/contact",
+  },
+  {
+    icon: "💬",
+    title: "C端一对一咨询",
+    tag: "低客单入口 · 私教转化产品",
+    price: "¥399 / 小时",
+    desc: "帮助想学习邮件营销、副业变现或转型自由职业的人，快速判断自己是否适合走邮件营销方向，并明确下一步行动路径。",
+    audience: "想学邮件营销但不知从何开始、想做副业/自由职业、想转型数字营销、卡在工具/接单/作品集阶段的人。",
+    deliverables: [
+      "个人现状诊断",
+      "技能基础评估",
+      "邮件营销学习路径建议",
+      "副业/自由职业方向判断",
+      "接单路径建议",
+      "作品集准备建议",
+      "是否适合私教陪跑的判断",
+      "一份个人行动建议清单",
+    ],
+    cta: "预约咨询",
+    url: "/contact",
+  },
+];
 ---
 
 <Layout
-  title={`${page.data.title} | ${config.site.title}`}
-  description={page.data.description}
+  title={`服务 | ${config.site.title}`}
+  description="我帮助出海品牌和想学习邮件营销的个人，通过系统化邮件营销，降低获客依赖、提升复购转化，并建立可持续变现能力。"
 >
   <Header />
   <Breadcrumb />
-  <Main pageTitle={page.data.title} class="app-prose">
-    <Content />
+  <Main pageTitle="服务" class="sm:px-8">
+    <div class="mx-auto max-w-5xl">
+      <!-- 总定位 -->
+      <section class="mb-12 text-center">
+        <p class="text-lg leading-relaxed text-foreground/80 sm:text-xl">
+          我帮助出海品牌和想学习邮件营销的个人，通过系统化邮件营销，<br class="hidden sm:block" />降低获客依赖、提升复购转化，并建立可持续变现能力。
+        </p>
+      </section>
+
+      <!-- 产品卡片 -->
+      <div class="grid gap-6 sm:grid-cols-2">
+        {products.map((p) => (
+          <div class="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:bg-muted/30">
+            <!-- 卡片头部 -->
+            <div class="mb-4">
+              <div class="mb-2 flex items-center gap-3">
+                <span class="text-3xl">{p.icon}</span>
+                <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent-foreground">
+                  {p.tag}
+                </span>
+              </div>
+              <h2 class="text-xl font-bold text-foreground">{p.title}</h2>
+            </div>
+
+            <!-- 价格 -->
+            <div class="mb-4">
+              <span class="text-2xl font-bold text-accent">{p.price}</span>
+            </div>
+
+            <!-- 一句话介绍 -->
+            <p class="mb-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+
+            <!-- 适合人群 -->
+            <div class="mb-4">
+              <h3 class="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/60">适合人群</h3>
+              <p class="text-sm text-muted-foreground">{p.audience}</p>
+            </div>
+
+            <!-- 交付内容 -->
+            <div class="mb-6 flex-1">
+              <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground/60">交付内容</h3>
+              <ul class="space-y-1.5">
+                {p.deliverables.map((d) => (
+                  <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span class="mt-0.5 text-accent">✓</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- CTA 按钮 -->
+            <a
+              href={p.url}
+              class="block w-full rounded-xl bg-accent py-3 text-center font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              {p.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
   </Main>
   <Footer />
 </Layout>
