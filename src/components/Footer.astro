@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import Socials from "./Socials.astro";
 import { useTranslations } from "@/i18n";
 
 type Props = {
@@ -14,17 +13,142 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
+  class:list={["mt-auto", className]}
   {...attrs}
 >
-  <div
-    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
-  >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>{t.footer.copyright} &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>{t.footer.allRightsReserved}</span>
+  <div class="bg-[#0f1419] text-gray-400">
+    <div class="mx-auto max-w-6xl px-6 py-12">
+      {/* 四列布局 */}
+      <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+        {/* 第一列：品牌 */}
+        <div>
+          <a href="/" class="mb-3 inline-flex items-center gap-2 text-lg font-bold text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1DE6B7" class="size-6">
+              <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14c1 0 2-1 2-2V5c0-1.103-.897-2-2-2H5c-1 0-2 1-2 2v10c0 1 1 2 2 2z"/>
+            </svg>
+            雷梦婷
+          </a>
+          <p class="mt-2 text-sm leading-relaxed">
+            品牌邮件营销增长顾问
+          </p>
+          <p class="mt-1 text-sm leading-relaxed">
+            记录邮件营销、自由职业和个人成长
+          </p>
+        </div>
+
+        {/* 第二列：服务 */}
+        <div>
+          <h3 class="mb-4 text-sm font-semibold text-white">服务</h3>
+          <ul class="space-y-3">
+            <li><a href="/service" class="text-sm transition-colors hover:text-[#1DE6B7]">邮件营销咨询</a></li>
+            <li><a href="/service" class="text-sm transition-colors hover:text-[#1DE6B7]">自由职业辅导</a></li>
+            <li><a href="/service" class="text-sm transition-colors hover:text-[#1DE6B7]">品牌增长顾问</a></li>
+          </ul>
+        </div>
+
+        <!-- 第三列：导航 -->
+        <div>
+          <h3 class="mb-4 text-sm font-semibold text-white">导航</h3>
+          <ul class="space-y-3">
+            <li><a href="/posts" class="text-sm transition-colors hover:text-[#1DE6B7]">文章</a></li>
+            <li><a href="/about" class="text-sm transition-colors hover:text-[#1DE6B7]">关于我</a></li>
+            <li><a href="/life" class="text-sm transition-colors hover:text-[#1DE6B7]">生活碎片</a></li>
+            <li><a href="/contact" class="text-sm transition-colors hover:text-[#1DE6B7]">联系</a></li>
+          </ul>
+        </div>
+
+        <!-- 第四列：社交 -->
+        <div>
+          <h3 class="mb-4 text-sm font-semibold text-white">社交</h3>
+          <ul class="space-y-3">
+            <li>
+              <button
+                id="footer-wechat-copy"
+                type="button"
+                class="cursor-pointer text-left text-sm transition-colors hover:text-[#1DE6B7]"
+              >
+                公众号「雷梦婷」
+              </button>
+            </li>
+            <li>
+              <a
+                href="https://www.xiaohongshu.com/user/profile/6305693a0000000012003aae"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm transition-colors hover:text-[#1DE6B7]"
+              >
+                小红书 @梦婷
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.zhihu.com/people/0cb656775a71a49f4515318ff41663ae"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm transition-colors hover:text-[#1DE6B7]"
+              >
+                知乎 @雷梦婷
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 底部版权栏 -->
+      <div class="mt-12 flex flex-col items-center justify-between border-t border-white/10 pt-6 sm:flex-row">
+        <span class="text-xs text-gray-500">
+          &copy; {currentYear} 雷梦婷 All rights reserved.
+        </span>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-2 text-xs text-gray-500 hover:text-gray-400 sm:mt-0"
+        >
+          备案号待补充
+        </a>
+        <!-- 回到顶部 -->
+        <button
+          id="back-to-top-btn"
+          type="button"
+          aria-label="回到顶部"
+          class="mt-2 inline-flex size-9 items-center justify-center rounded-full bg-[#1DE6B7] text-black shadow-lg transition-transform hover:-translate-y-1 sm:mt-0"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 15l7-7 7 7"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </footer>
+
+<script define:vars={{ wechatName: "雷梦婷" }}>
+  document.addEventListener("astro:page-load", () => {
+    // 公众号名称复制（Footer）
+    const footerCopyBtn = document.getElementById("footer-wechat-copy");
+    if (footerCopyBtn) {
+      footerCopyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(wechatName);
+          footerCopyBtn.textContent = `已复制「${wechatName}」！`;
+          footerCopyBtn.style.color = "#1DE6B7";
+          setTimeout(() => {
+            footerCopyBtn.textContent = `公众号「${wechatName}」`;
+            footerCopyBtn.style.color = "";
+          }, 1500);
+        } catch (e) {
+          console.error("复制失败:", e);
+        }
+      });
+    }
+
+    // 回到顶部
+    const backToTop = document.getElementById("back-to-top-btn");
+    if (backToTop) {
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  });
+</script>
