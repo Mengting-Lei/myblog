@@ -25,9 +25,11 @@ jobs:
 
       - name: Build
         run: |
+          set -e
           npx astro build
-          npx pagefind --site dist
-          cp -r dist/pagefind public/ || true
+          if [ -d "dist/pagefind" ]; then
+            cp -r dist/pagefind public/
+          fi
         env:
           ASTRO_TELEMETRY_DISABLED: "1"
 
