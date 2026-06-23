@@ -17,7 +17,7 @@
 /* Light theme values — 品牌色：温暖米白背景 + Growth Green强调 */
 :root,
 [data-theme="light"] {
-  --background: #FAFADE;        /* Warm Cream 温暖米白 */
+  --background: #ffffff;        /* 白色背景 */
   --foreground: #1A1A1A;        /* Text Black 深墨黑 */
   --accent: #1DE6B7;            /* Growth Green 品牌主绿 */
   --accent-foreground: #0d3329;
