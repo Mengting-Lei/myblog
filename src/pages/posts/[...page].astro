@@ -32,7 +32,7 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags ?? []))].s
 
   <Breadcrumb />
 
-  <Main pageTitle={t.pages.postsTitle} pageDesc={t.pages.postsDesc}>
+  <Main pageTitle={t.pages.postsTitle}>
     {/* Tag Filter Bar */}
     {allTags.length > 0 && (
       <div class="mb-8 flex flex-wrap gap-2" id="tag-filter">

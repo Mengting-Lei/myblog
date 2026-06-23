@@ -72,7 +72,7 @@ const coverImage = typeof data.ogImage === "string" ? data.ogImage : null;
 
       {/* Date */}
       <div class="mt-auto flex items-center gap-1 text-xs text-muted-foreground">
-        <Datetime {...props} />
+        <Datetime pubDatetime={pubDatetime} modDatetime={data.modDatetime} />
       </div>
     </div>
   </a>
