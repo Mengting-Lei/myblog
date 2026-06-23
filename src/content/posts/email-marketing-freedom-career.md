@@ -5,6 +5,7 @@ description: "英专生如何靠邮件营销实现自由职业，不再为别人
 tags:
   - 自由职业
   - 邮件营销
+ogImage: /images/email-marketing-freedom-career/img1.jpg
 draft: false
 ---
 

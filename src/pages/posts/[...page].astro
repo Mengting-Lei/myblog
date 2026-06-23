@@ -21,6 +21,10 @@ const { page } = Astro.props;
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
+
+// Collect all unique tags from all posts (not just current page)
+const allPosts = await getCollection("posts", ({ data }) => !data.draft);
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags ?? []))].sort();
 ---
 
 <Layout title={`${t.pages.postsTitle} | ${config.site.title}`}>
@@ -29,12 +33,89 @@ const t = useTranslations(locale);
   <Breadcrumb />
 
   <Main pageTitle={t.pages.postsTitle} pageDesc={t.pages.postsDesc}>
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
+    {/* Tag Filter Bar */}
+    {allTags.length > 0 && (
+      <div class="mb-8 flex flex-wrap gap-2" id="tag-filter">
+        <button
+          class="tag-btn active rounded-full border border-border bg-background px-4 py-1.5 text-sm font-medium transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
+          data-tag="all"
+          data-active="true"
+        >
+          全部
+        </button>
+        {allTags.map((tag) => (
+          <button
+            class="tag-btn rounded-full border border-border bg-background px-4 py-1.5 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
+            data-tag={tag}
+            data-active="false"
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {/* Post Cards Grid */}
+    <ul
+      id="posts-grid"
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      data-tags={allTags.join(",")}
+    >
+      {page.data.map((data, index) => (
+        <Card {...data} />
+      ))}
     </ul>
+
+    {/* No results message */}
+    <p id="no-results" class="hidden mt-12 text-center text-muted-foreground">
+      没有找到相关文章
+    </p>
   </Main>
 
   <Pagination {page} />
 
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>
+
+<script>
+  // Client-side tag filtering
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>("#tag-filter .tag-btn");
+    const cards = document.querySelectorAll<HTMLLIElement>("#posts-grid > li");
+    const noResults = document.getElementById("no-results");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Update active state
+        buttons.forEach((b) => {
+          b.dataset.active = "false";
+          b.classList.remove("active");
+        });
+        btn.dataset.active = "true";
+        btn.classList.add("active");
+
+        const selectedTag = btn.dataset.tag;
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          if (selectedTag === "all") {
+            card.style.display = "";
+            visibleCount++;
+          } else {
+            // Check if card's tags contain the selected tag
+            const tagEls = card.querySelectorAll(".rounded-full.bg-accent\\/10");
+            const hasTag = Array.from(tagEls).some(
+              (el) => el.textContent?.trim() === selectedTag
+            );
+            card.style.display = hasTag ? "" : "none";
+            if (hasTag) visibleCount++;
+          }
+        });
+
+        if (noResults) {
+          noResults.classList.toggle("hidden", visibleCount > 0);
+        }
+      });
+    });
+  });
+</script>
