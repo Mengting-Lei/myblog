@@ -27,6 +27,53 @@ const rssHref = getRelativeLocaleUrl(
   Astro.currentLocale ?? config.site.lang,
   "rss.xml"
 );
+
+// JSON-LD for all pages: Organization + WebSite
+const siteUrl = Astro.site?.toString().replace(/\/?$/, "/") ?? canonicalURL;
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.title,
+  url: siteUrl,
+  logo: new URL("/logo.png", Astro.site ?? Astro.url).href,
+  sameAs: config.socials
+    .filter(s => s.name !== "rss")
+    .map(s => s.url),
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.title,
+  url: siteUrl,
+  description: site.description,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: new URL("/search/?q={search_term_string}", Astro.site ?? Astro.url).href,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+// BreadcrumbList schema
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "首页",
+      item: siteUrl,
+    },
+    ...pathSegments.map((segment, index) => ({
+      "@type": "ListItem",
+      position: index + 2,
+      name: decodeURIComponent(segment),
+      item: new URL("/" + pathSegments.slice(0, index + 1).join("/") + "/", Astro.site ?? Astro.url).href,
+    })),
+  ],
+};
 ---
 
 <!doctype html>
@@ -48,7 +95,7 @@ const rssHref = getRelativeLocaleUrl(
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
-    <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
+    <link rel="sitemap" href={getAssetPath("sitemap.xml")} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -71,6 +118,13 @@ const rssHref = getRelativeLocaleUrl(
       type="application/rss+xml"
       title={site.title}
       href={new URL(rssHref, Astro.site)}
+    />
+
+    <!-- JSON-LD: Organization + WebSite + BreadcrumbList -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify([organizationSchema, websiteSchema, breadcrumbSchema])}
     />
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->

@@ -30,6 +30,15 @@ const structuredData = {
       ...(site.profile && { url: site.profile }),
     },
   ],
+  publisher: {
+    "@type": "Organization",
+    name: site.title,
+    logo: new URL("/logo.png", Astro.url.origin).href,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": Astro.url.href,
+  },
 };
 ---
 

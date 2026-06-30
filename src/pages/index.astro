@@ -25,7 +25,10 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = getRelativeLocaleUrl(locale, "");
 ---
 
-<Layout>
+<Layout
+  title={`首页 | ${config.site.title}`}
+  description="我是梦婷，品牌邮件营销增长顾问。在这里记录邮件营销、自由职业和个人成长，也提供相关咨询与服务。"
+>
   <Header />
   <main
     id="main-content"

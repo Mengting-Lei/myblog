@@ -1,0 +1,49 @@
+# 允许所有主流搜索引擎和 AI 爬虫访问全站
+User-agent: *
+Allow: /
+
+# =============================================
+# AI 搜索与检索爬虫放行列表
+# =============================================
+
+# OpenAI / ChatGPT
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: Claude-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google / Gemini
+User-agent: Googlebot
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Bing
+User-agent: Bingbot
+Allow: /
+
+# 百度 / 文心一言
+User-agent: Baiduspider
+Allow: /
+
+# 华为 / PetalBot
+User-agent: PetalBot
+Allow: /
+
+# 字节跳动 / 豆包
+User-agent: Bytespider
+Allow: /
+
+# =============================================
+# 站点地图
+# =============================================
+Sitemap: https://leimengting.com/sitemap.xml

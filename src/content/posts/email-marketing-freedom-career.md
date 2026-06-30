@@ -12,7 +12,7 @@ draft: false
 
 三年前的我怎么也想不到，我可以不用去公司上班，也能每个月有稳定收入，真正实现时间自由和地点自由。
 
-![自由职业生活](/images/email-marketing-freedom-career/img1.jpg)
+![梦婷自由职业工作与生活照片](/images/email-marketing-freedom-career/img1.jpg)
 
 那时的我正深陷焦虑，找不到生活、工作的目标与意义。一年前我被一家上市公司裁员，尽管我刚刚把倒数第一的类目做到部门第一，拿到了A+绩效。那一刻我彻底明白，业绩再好，我也可能随时出局。
 
@@ -39,7 +39,7 @@ draft: false
 
 那段时间，没有娱乐，没有外出，没有假期。暑假要留在学校学习，西安的夏天，住的地方没有空调，有很多蚊子，连吃饭也要借饭卡去隔壁学校食堂，但我还是坚持下来了。终于，2016年，我成功**被广东外语外贸大学商务英语专业录取**。
 
-![广外研究生生活](/images/email-marketing-freedom-career/img3.jpg)
+![梦婷广东外语外贸大学研究生时期照片](/images/email-marketing-freedom-career/img3.jpg)
 
 考上广外研究生后，我一边学习、写论文，一边兼职、找实习。我很庆幸自己通过努力考到了广外。在那个更开放、多元的环境里，我**开始有更多机会锻炼英语能力，参加广交会、兼职陪同翻译、参加各种学术会议**等等。也因为经历了三年的研究生生活，我知道未来不会从事学术研究，也不会当英语老师。
 
@@ -141,7 +141,7 @@ draft: false
 
 五月开始，确定方向后，我投入所有精力开始学习email marketing。我把平台上搜集的工作信息全部整理出来，总结出这个方向要接单需要的技能、证书，开始每天自学。**很快，月底我就拿到Klaviyo和Mailchimp邮件营销受训证书。**
 
-![Klaviyo证书](/images/email-marketing-freedom-career/img6.jpg)
+![梦婷的Klaviyo邮件营销认证证书](/images/email-marketing-freedom-career/img6.jpg)
 
 Klaviyo证书
 

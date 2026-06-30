@@ -16,6 +16,45 @@ if (!about) {
 }
 
 const { Content } = await render(about);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "你是谁？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "我是梦婷，一名品牌邮件营销增长顾问，帮助出海品牌通过邮件营销提升复购转化，也帮助个人系统学习邮件营销。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "你提供哪些服务？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "我提供品牌邮件营销增长全案、G.R.O.W.EDM 三个月私教陪跑营、品牌邮件营销增长战略 1v1 定制方案，以及 C 端一对一咨询服务。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "如何联系你？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "你可以通过微信 MengtingEDM、邮箱 leimengting15@gmail.com、小红书/知乎「梦婷 Mengting」或微信公众号「雷梦婷」联系我。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "你擅长什么？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "我擅长邮件营销（Klaviyo、Mailchimp）、网站运营（Shopify、WordPress），熟练使用汉语、英语、法语和粤语。",
+      },
+    },
+  ],
+};
 ---
 
 <Layout
@@ -24,6 +63,14 @@ const { Content } = await render(about);
   ogImage={about.data.ogImage}
   canonicalURL={about.data.canonicalURL}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(faqSchema)}
+    />
+  </Fragment>
+
   <Header />
 
   <Breadcrumb />
