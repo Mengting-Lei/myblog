@@ -9,7 +9,7 @@ description: 降低合作和交流门槛
 
 ## 联系方式
 
-- **微信**：搜索「MengtingEDM」，或扫描下方二维码添加
+- **微信**：搜索「MengtingEDM」，或扫描下方二维码添加<span style="color: #ef4444; margin-left: 4px;">(加微信请备注来意)</span>
 
 <img src="/wechat-qr.jpg" alt="微信二维码" width="200" height="200" style="border-radius: 8px;" />
 
