@@ -35,6 +35,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: site.title,
   url: siteUrl,
+  description: site.description,
   logo: new URL("/logo.png", Astro.site ?? Astro.url).href,
   sameAs: config.socials
     .filter(s => s.name !== "rss")
@@ -95,6 +96,7 @@ const breadcrumbSchema = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
+    <meta name="robots" content="index, follow" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->

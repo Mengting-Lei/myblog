@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://leimengting.com/",
     title: "梦婷 | 品牌邮件营销增长顾问",
-    description: "心之所向，披荆以往。记录工作、生活与个人成长。",
+    description: "品牌邮件营销增长顾问 | 邮件营销咨询、自由职业辅导、品牌邮件营销增长全案",
     author: "雷梦婷",
     profile: "https://leimengting.com/",
     ogImage: "default-og.jpg",
