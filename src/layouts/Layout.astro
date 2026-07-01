@@ -11,6 +11,7 @@ type Props = {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  ogType?: "website" | "article";
 };
 
 const { site } = config;
@@ -20,6 +21,7 @@ const {
   description = site.description,
   ogImage = resolveDefaultOgImagePath(config),
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  ogType = "website",
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
@@ -28,8 +30,32 @@ const rssHref = getRelativeLocaleUrl(
   "rss.xml"
 );
 
-// JSON-LD for all pages: Organization + WebSite
+// JSON-LD for all pages: Person + Organization + WebSite
 const siteUrl = Astro.site?.toString().replace(/\/?$/, "/") ?? canonicalURL;
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.author,
+  alternateName: "梦婷",
+  url: siteUrl,
+  image: new URL("/logo.png", Astro.site ?? Astro.url).href,
+  description: site.description,
+  jobTitle: "品牌邮件营销增长顾问",
+  knowsAbout: [
+    "邮件营销",
+    "Klaviyo",
+    "Mailchimp",
+    "Shopify",
+    "跨境电商",
+    "独立站运营",
+    "自由职业",
+    "个人品牌",
+  ],
+  sameAs: config.socials
+    .filter(s => s.name !== "rss")
+    .map(s => s.url),
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -100,7 +126,7 @@ const breadcrumbSchema = {
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -122,11 +148,11 @@ const breadcrumbSchema = {
       href={new URL(rssHref, Astro.site)}
     />
 
-    <!-- JSON-LD: Organization + WebSite + BreadcrumbList -->
+    <!-- JSON-LD: Person + Organization + WebSite + BreadcrumbList -->
     <script
       type="application/ld+json"
       is:inline
-      set:html={JSON.stringify([organizationSchema, websiteSchema, breadcrumbSchema])}
+      set:html={JSON.stringify([personSchema, organizationSchema, websiteSchema, breadcrumbSchema])}
     />
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->

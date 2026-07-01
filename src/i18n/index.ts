@@ -12,7 +12,13 @@ for (const [path, mod] of Object.entries(modules)) {
   translations[locale] = mod.default;
 }
 
+/** Normalise locale code for file lookup (e.g. zh-CN -> zh-cn). */
+function normaliseLocale(locale: string): string {
+  return locale.toLowerCase();
+}
+
 /** Returns UI strings for the given locale, falling back to Chinese. */
-export function useTranslations(locale: string = "zh-cn"): UIStrings {
-  return translations[locale] ?? translations["zh-cn"] ?? translations["en"];
+export function useTranslations(locale: string = "zh-CN"): UIStrings {
+  const key = normaliseLocale(locale);
+  return translations[key] ?? translations["zh-cn"] ?? translations["en"];
 }

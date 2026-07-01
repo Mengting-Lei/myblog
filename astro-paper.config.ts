@@ -8,7 +8,7 @@ export default defineAstroPaperConfig({
     author: "雷梦婷",
     profile: "https://leimengting.com/",
     ogImage: "default-og.jpg",
-    lang: "zh-cn",
+    lang: "zh-CN",
     timezone: "Asia/Shanghai",
     dir: "ltr",
   },
