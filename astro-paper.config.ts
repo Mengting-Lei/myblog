@@ -24,7 +24,6 @@ export default defineAstroPaperConfig({
     showBackButton: true,
     editPost: {
       enabled: false,
-      url: "https://github.com/Mengting-Lei/myblog/edit/main/",
     },
     search: "pagefind",
   },

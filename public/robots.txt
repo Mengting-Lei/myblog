@@ -46,4 +46,4 @@ Allow: /
 # =============================================
 # 站点地图
 # =============================================
-Sitemap: https://leimengting.com/sitemap.xml
+Sitemap: https://leimengting.com/sitemap-index.xml

@@ -77,8 +77,6 @@ let ogImageUrl: string | undefined;
 
 if (typeof initOgImage === "string") {
   ogImageUrl = initOgImage;
-} else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src;
 }
 
 if (!ogImageUrl && config.features.dynamicOgImage) {

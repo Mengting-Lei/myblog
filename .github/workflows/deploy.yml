@@ -27,6 +27,9 @@ jobs:
         run: |
           set -e
           npx astro build
+          if [ -f "dist/sitemap-index.xml" ]; then
+            cp dist/sitemap-index.xml dist/sitemap.xml
+          fi
           if [ -d "dist/pagefind" ]; then
             cp -r dist/pagefind public/
           fi
