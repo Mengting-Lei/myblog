@@ -56,21 +56,23 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
 
       {/* Tag Filter Buttons */}
       <div class="flex flex-wrap gap-2" id="tag-filter">
-        <button
+        <a
+          href="/posts/"
           class="tag-btn active rounded-full border border-border bg-background px-3 py-1 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
           data-tag="all"
           data-active="true"
         >
           全部
-        </button>
+        </a>
         {fixedTags.map((tag) => (
-          <button
+          <a
+            href={`/tags/${tag}/`}
             class="tag-btn rounded-full border border-border bg-background px-3 py-1 text-sm transition-all hover:border-accent hover:text-accent data-[active=true]:border-accent data-[active=true]:bg-accent data-[active=true]:text-white dark:data-[active=true]:text-foreground"
             data-tag={tag}
             data-active="false"
           >
             {tag}
-          </button>
+          </a>
         ))}
       </div>
     </div>
@@ -97,29 +99,18 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
 </Layout>
 
 <script>
-  // Client-side tag filtering + search
+  // Client-side search filtering
   document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll<HTMLButtonElement>("#tag-filter .tag-btn");
     const cards = document.querySelectorAll<HTMLLIElement>("#posts-grid > li");
     const noResults = document.getElementById("no-results");
     const searchInput = document.getElementById("post-search") as HTMLInputElement;
 
-    let selectedTag = "all";
     let searchTerm = "";
 
     function updateFilter() {
       let visibleCount = 0;
 
       cards.forEach((card) => {
-        // Tag filter
-        let tagMatch = true;
-        if (selectedTag !== "all") {
-          const tagEls = card.querySelectorAll("[data-tag]");
-          tagMatch = Array.from(tagEls).some(
-            (el) => el.getAttribute("data-tag") === selectedTag
-          );
-        }
-
         // Search filter
         let searchMatch = true;
         if (searchTerm) {
@@ -128,7 +119,7 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
           searchMatch = title.includes(searchTerm) || desc.includes(searchTerm);
         }
 
-        if (tagMatch && searchMatch) {
+        if (searchMatch) {
           card.style.display = "";
           visibleCount++;
         } else {
@@ -140,20 +131,6 @@ const fixedTags = ["自由职业", "邮件营销", "个人成长", "AI"];
         noResults.classList.toggle("hidden", visibleCount > 0);
       }
     }
-
-    // Tag button clicks
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        buttons.forEach((b) => {
-          b.dataset.active = "false";
-          b.classList.remove("active");
-        });
-        btn.dataset.active = "true";
-        btn.classList.add("active");
-        selectedTag = btn.dataset.tag || "all";
-        updateFilter();
-      });
-    });
 
     // Search input
     if (searchInput) {
